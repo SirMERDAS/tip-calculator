@@ -17,17 +17,18 @@
 
 
         <div class="container mt-10">
-            <div class="row calculator-body shadow-lg p-4">
+            <div class="row calculator-body shadow-lg p-4 mb-5">
                 <div class="col-md-1"></div>
-                <div class="col-md-5 bill-info ">
+                <div class="col-md-5 py-3 bill-info ">
                     <form action="">
                         <span class="bill text-muted mb-2 d-inline">Bill</span>
-                        <span class="d-inline float-end error-msg"><i class="bi bi-exclamation-circle"></i></span>
-                        <div class="row text-center">
+                        <span class="d-inline float-end error-msg" id="bill-error"></span>
+                        <div class="row ">
                             <div class="col-12 text-center mb-4 ">
-                                <div class="input-group">
-                                    <input type="number" class="form-control custom-control p-2 number-control" min="0" maxlength="4" max="500" placeholder="0" id="bill" required>
-                                    <div class="input-group-text text-muted custom-control-text p-2">
+                                <div class="input-group mt-2">
+                                    <input type="number" class="form-control custom-control p-2 number-control" min="0" maxlength="4" max="500" placeholder="0" id="bill" required
+                                        onblur="deleteBillMsg()">
+                                    <div class="input-group-text text-muted custom-control-text p-2" id="bill-ico">
                                         <label for="bill" class="">
                                             <i class="bi-currency-dollar"></i>
                                         </label>
@@ -38,32 +39,45 @@
                             <div class="col-12 mt-4">
                                 <p class="text-muted">Select tip %</p>
                                 <div class="row ">
-                                    <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
-                                        <button class="tip-button px-xxl-5 px-xl-5 px-lg-4 px-md-3 px-sm-5 px-5 py-2 w-100" type="button" value="10">10%</button>
-                                    </div>
-                                    <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
-                                        <button class="tip-button px-xxl-5 px-xl-5 px-lg-4 px-md-3 px-sm-5 px-5 py-2 w-100" type="button" value="15">15%</button>
-                                    </div>
-                                    <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
-                                        <button class="tip-button px-xxl-5 px-xl-5 px-lg-4 px-md-3 px-sm-5 px-5 py-2 w-100" type="button" value="25">25%</button>
-                                    </div>
-                                    <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
-                                        <button class="tip-button px-xxl-5 px-xl-5 px-lg-4 px-md-3 px-sm-5 px-5 py-2 w-100" type="button" value="50">50%</button>
-                                    </div>
-                                    <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
-                                        <button class="tip-button px-xxl-5 px-xl-5 px-lg-4 px-md-3 px-sm-5 px-5 py-2 w-100" type="button" value="75">75%</button>
-                                    </div>
-                                    <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
-                                        <input type="number" class="number-control px-3 py-2 custom-tip" placeholder="Custom" min="0" max="100">
+                                    <div class="tip-container">
+                                        <div class="row">
+                                            <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
+                                                <input type="radio" name="tipAmount" id="ten" value="10" class="tip-btn">
+                                                <label for="ten" class="tip-percentage tip-button px-xxl-5 px-xl-5 text-center px-lg-4 px-md-3 px-sm-5 px-5 py-2 w-100">10%</label>
+                                            </div>
+                                            <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
+                                                <input type="radio" name="tipAmount" id="fifteen" value="15" class="tip-btn">
+                                                <label for="fifteen" class="tip-percentage text-center tip-button px-xxl-5 px-xl-5 px-lg-4 px-md-3 px-sm-5 px-5 py-2 w-100">15%</label>
+                                            </div>
+                                            <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
+                                                <input type="radio" name="tipAmount" id="twentyFive" value="25" class="tip-btn">
+                                                <label for="twentyFive" class="tip-percentage text-center tip-button px-xxl-5 px-xl-5 px-lg-4 px-md-3 px-sm-5 px-5 py-2 w-100">25%</label>
+                                            </div>
+                                            <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
+                                                <input type="radio" name="tipAmount" id="fifty" value="50" class="tip-btn">
+                                                <label for="fifty" class="tip-percentage text-center tip-button px-xxl-5 px-xl-5 px-lg-4 px-md-3 px-sm-5 px-5 py-2 w-100">50%</label>
+                                            </div>
+                                            <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
+                                                <input type="radio" name="tipAmount" id="seventyFive" value="75" class="tip-btn">
+                                                <label for="seventyFive" class="tip-percentage text-center tip-button px-xxl-5 px-xl-5 px-lg-4 px-md-3 px-sm-5 px-5 py-2 w-100">75%</label>
+                                            </div>
+                                            <div class="mb-3 mt-1 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-6 col-6">
+                                                <input type="number" name="tipAmountCustom" class="number-control px-3 py-2 custom-tip" placeholder="Custom" min="0" max="100" id="custom-tip"
+                                                    onclick="tipDefiner()" onblur="deleteTipMsg()">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 mt-3">
-                                <label for="bill" class="bill text-muted mb-2">Number of people</label>
+                                <span class=" text-muted mb-2 d-inline">Number of people</span>
+                                <span class="d-inline float-end error-msg" id="people-error"></span>
                                 <div class="col-12 text-center mb-4 ">
-                                    <div class="input-group">
-                                        <input type="number" class="form-control custom-control p-2 number-control" min="0" maxlength="4" max="20" placeholder="0" id="bill" required>
-                                        <div class="input-group-text text-muted custom-control-text p-2">
+                                    <div class="input-group mt-2">
+                                        <input type="number" class="form-control custom-control p-2 number-control" min="0" maxlength="4" max="20" placeholder="0" required
+                                            id="people-selector"
+                                            onblur="deletePeopleMsg()">
+                                        <div class="input-group-text text-muted custom-control-text p-2" id="people-ico">
                                             <label for="bill" class="">
                                                 <i class="bi-person-fill"></i>
                                             </label>
@@ -76,17 +90,17 @@
 
                     </form>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5 py-3">
                     <div class="info-body p-4 h-100">
                         <div class="row h-100">
                             <div class="col-12">
                                 <span class="tip-info">Tip Amount</span>
-                                <span class="float-end price">$0.00</span>
+                                <span class="float-end price" id="price">$0.00</span>
                                 <span class="text-muted d-block">/person</span>
                             </div>
                             <div class="col-12 mb-4">
                                 <span class="tip-info">Total</span>
-                                <span class="float-end price">$00.00</span>
+                                <span class="float-end price" id="totalPrice">$00.00</span>
                                 <span class="text-muted d-block">/person</span>
                             </div>
                             <div class=" text-center col-12 align-self-end">
@@ -98,7 +112,6 @@
 
                 </div>
                 <div class="col-md-1"></div>
-
             </div>
         </div>
 
@@ -106,19 +119,7 @@
 
 
 
-
-
-
-
-
-
-
         <script src="js/script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
-            crossorigin="anonymous"></script>
+
     </body>
 </html>
