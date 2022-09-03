@@ -12,7 +12,6 @@ I really appreciate Frontend Mentor
   - [Links](#links)
 - [Built with](#built-with)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
